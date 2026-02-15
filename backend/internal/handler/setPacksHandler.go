@@ -33,6 +33,6 @@ func (cfg *APIConfig) SetPacksHandler(w http.ResponseWriter, r *http.Request) {
 	logger.Printf("Pack sizes updated to %v", req.Sizes)
 
 	respondWithJSON(w, r, http.StatusOK, map[string]any{
-		"packs": cfg.PackStore.GetSizes(),
+		"packs": cfg.PackStore.GetAll(),
 	})
 }

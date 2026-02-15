@@ -9,7 +9,7 @@ import (
 
 var discardLogger = log.New(io.Discard, "", 0)
 
-func TestNewPacksStore(t *testing.T) {
+func TestPacksStore(t *testing.T) {
 	tests := []struct {
 		name    string
 		initial []int
@@ -23,7 +23,7 @@ func TestNewPacksStore(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewPacksStore(tt.initial, discardLogger)
-			res := s.GetSizes()
+			res := s.GetAll()
 
 			if !slices.Equal(res, tt.want) {
 				t.Errorf("expected %v, got %v", tt.want, res)
@@ -55,7 +55,7 @@ func TestAdd(t *testing.T) {
 				t.Fatalf("expected error=%v, got %v", tt.wantErr, err)
 			}
 
-			res := s.GetSizes()
+			res := s.GetAll()
 
 			if !slices.Equal(res, tt.wantSizes) {
 				t.Errorf("expected %v, got %v", tt.wantSizes, res)
@@ -86,7 +86,7 @@ func TestRemove(t *testing.T) {
 				t.Fatalf("expected error=%v, got %v", tt.wantErr, err)
 			}
 
-			res := s.GetSizes()
+			res := s.GetAll()
 
 			if !slices.Equal(res, tt.wantSizes) {
 				t.Errorf("expected %v, got %v", tt.wantSizes, res)
@@ -118,7 +118,7 @@ func TestSet(t *testing.T) {
 				t.Fatalf("expected error=%v, got %v", tt.wantErr, err)
 			}
 
-			res := s.GetSizes()
+			res := s.GetAll()
 
 			if !slices.Equal(res, tt.wantSizes) {
 				t.Errorf("expected %v, got %v", tt.wantSizes, res)

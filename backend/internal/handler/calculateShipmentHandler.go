@@ -31,7 +31,7 @@ func (cfg *APIConfig) CalculateShipmentHandler(w http.ResponseWriter, r *http.Re
 		return
 	}
 
-	packSizes := cfg.PackStore.GetSizes()
+	packSizes := cfg.PackStore.GetAll()
 	packs := calculator.CalculatePackSizes(req.Items, packSizes)
 
 	itemsShipped := 0

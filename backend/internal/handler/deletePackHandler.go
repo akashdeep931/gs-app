@@ -42,6 +42,6 @@ func (cfg *APIConfig) DeletePackHandler(w http.ResponseWriter, r *http.Request) 
 	logger.Printf("Pack size %d removed", size)
 
 	respondWithJSON(w, r, http.StatusOK, map[string]any{
-		"packs": cfg.PackStore.GetSizes(),
+		"packs": cfg.PackStore.GetAll(),
 	})
 }

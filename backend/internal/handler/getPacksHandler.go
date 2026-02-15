@@ -9,7 +9,7 @@ func (cfg *APIConfig) GetPacksHandler(w http.ResponseWriter, r *http.Request) {
 	logger := middleware.GetLogger(r)
 	logger.Println("Fetching pack sizes")
 
-	sizes := cfg.PackStore.GetSizes()
+	sizes := cfg.PackStore.GetAll()
 
 	logger.Printf("Returning %d pack sizes", len(sizes))
 

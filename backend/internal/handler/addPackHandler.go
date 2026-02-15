@@ -48,6 +48,6 @@ func (cfg *APIConfig) AddPackHandler(w http.ResponseWriter, r *http.Request) {
 	logger.Printf("Pack size %d added", req.Size)
 
 	respondWithJSON(w, r, http.StatusCreated, map[string]any{
-		"packs": cfg.PackStore.GetSizes(),
+		"packs": cfg.PackStore.GetAll(),
 	})
 }
