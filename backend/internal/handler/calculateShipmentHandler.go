@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-func (cfg *APIConfig) CalculatePackSizesHandler(w http.ResponseWriter, r *http.Request) {
+func (cfg *APIConfig) CalculateShipmentHandler(w http.ResponseWriter, r *http.Request) {
 	logger := middleware.GetLogger(r)
 	logger.Println("Attempting packs calculation")
 
-	var req model.CalculatePackSizesRequest
+	var req model.CalculateShipmentRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		logger.Printf("Invalid request body: %v", err)
 

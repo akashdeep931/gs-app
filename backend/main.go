@@ -50,7 +50,7 @@ func main() {
 	v1Router.Get("/health", apiCfg.CheckHealthHandler)
 	v1Router.Get("/packs", apiCfg.GetPacksHandler)
 	v1Router.Post("/packs", apiCfg.AddPackHandler)
-	v1Router.Post("/calculate", apiCfg.CalculatePackSizesHandler)
+	v1Router.Post("/shipment", apiCfg.CalculateShipmentHandler)
 
 	router.Mount("/v1", v1Router)
 
