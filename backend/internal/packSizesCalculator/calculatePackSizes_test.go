@@ -1,10 +1,10 @@
-package packSizeCalculator
+package packSizesCalculator
 
 import (
 	"testing"
 )
 
-func TestCalculatePackSize(t *testing.T) {
+func TestCalculatePackSizes(t *testing.T) {
 	defaultPacks := []int{250, 500, 1000, 2000, 5000}
 
 	tests := []struct {
@@ -37,7 +37,7 @@ func TestCalculatePackSize(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			res := CalculatePackSize(tt.orderSize, tt.packSizes)
+			res := CalculatePackSizes(tt.orderSize, tt.packSizes)
 
 			if tt.totalPacks == nil {
 				if res != nil {

@@ -10,7 +10,7 @@ import (
 	"gs-app/backend/internal/store"
 )
 
-func TestCalculateHandler(t *testing.T) {
+func TestCalculatePackSizesHandler(t *testing.T) {
 	defaultPacks := []int{250, 500, 1000, 2000, 5000}
 
 	tests := []struct {
@@ -45,7 +45,7 @@ func TestCalculateHandler(t *testing.T) {
 			req.Header.Set("Content-Type", "application/json")
 			rec := httptest.NewRecorder()
 
-			cfg.CalculateHandler(rec, req)
+			cfg.CalculatePackSizesHandler(rec, req)
 
 			if rec.Code != tt.wantStatusCode {
 				t.Errorf("expected status %d, got %d", tt.wantStatusCode, rec.Code)

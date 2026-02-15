@@ -1,11 +1,11 @@
-package packSizeCalculator
+package packSizesCalculator
 
 import (
 	"math"
 	"slices"
 )
 
-func CalculatePackSize(orderSize int, packSizes []int) map[int]int {
+func CalculatePackSizes(orderSize int, packSizes []int) map[int]int {
 	if orderSize <= 0 || len(packSizes) == 0 {
 		return nil
 	}

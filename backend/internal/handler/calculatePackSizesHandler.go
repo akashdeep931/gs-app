@@ -4,15 +4,15 @@ import (
 	"encoding/json"
 	"gs-app/backend/internal/middleware"
 	"gs-app/backend/internal/model"
-	calculator "gs-app/backend/internal/packSizeCalculator"
+	calculator "gs-app/backend/internal/packSizesCalculator"
 	"net/http"
 )
 
-func (cfg *APIConfig) CalculateHandler(w http.ResponseWriter, r *http.Request) {
+func (cfg *APIConfig) CalculatePackSizesHandler(w http.ResponseWriter, r *http.Request) {
 	logger := middleware.GetLogger(r)
 	logger.Println("Attempting packs calculation")
 
-	var req model.CalculateRequest
+	var req model.CalculatePackSizesRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		logger.Printf("Invalid request body: %v", err)
 
@@ -32,7 +32,7 @@ func (cfg *APIConfig) CalculateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	packSizes := cfg.PackStore.GetSizes()
-	packs := calculator.CalculatePackSize(req.Items, packSizes)
+	packs := calculator.CalculatePackSizes(req.Items, packSizes)
 
 	itemsShipped := 0
 	for size, qty := range packs {

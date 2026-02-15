@@ -1,5 +1,5 @@
 package model
 
-type CalculateRequest struct {
+type CalculatePackSizesRequest struct {
 	Items int `json:"items"`
 }
