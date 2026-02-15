@@ -50,6 +50,7 @@ func main() {
 	v1Router.Get("/health", apiCfg.CheckHealthHandler)
 	v1Router.Get("/packs", apiCfg.GetPacksHandler)
 	v1Router.Post("/packs", apiCfg.AddPackHandler)
+	v1Router.Put("/packs", apiCfg.SetPacksHandler)
 	v1Router.Delete("/packs/{size}", apiCfg.DeletePackHandler)
 	v1Router.Post("/shipment", apiCfg.CalculateShipmentHandler)
 
