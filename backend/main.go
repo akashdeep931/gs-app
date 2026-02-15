@@ -34,7 +34,6 @@ func main() {
 		AllowedOrigins:   []string{"https://*", "http://*"},
 		AllowedMethods:   []string{"GET", "POST", "PATCH", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"*"},
-		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: false,
 		MaxAge:           300,
 	}))
@@ -49,6 +48,7 @@ func main() {
 	v1Router := chi.NewRouter()
 
 	v1Router.Get("/health", apiCfg.CheckHealthHandler)
+	v1Router.Get("/packs", apiCfg.GetPacksHandler)
 	v1Router.Post("/calculate", apiCfg.CalculateHandler)
 
 	router.Mount("/v1", v1Router)
