@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for gs-app-web on 2026-02-15
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'gs-app-web'
+primary_region = 'lhr'
+
+[build]
+  [build.args]
+    VITE_GS_API_URL = "https://gs-app-api.fly.dev/v1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
