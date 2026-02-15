@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"gs-app/backend/middleware"
+	"gs-app/backend/internal/middleware"
 	"net/http"
 )
 
-func CheckHealthHandler(w http.ResponseWriter, r *http.Request) {
+func (cfg *APIConfig) CheckHealthHandler(w http.ResponseWriter, r *http.Request) {
 	logger := middleware.GetLogger(r)
 	logger.Println("Checking service health")
 

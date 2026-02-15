@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"gs-app/backend/handler"
-	"gs-app/backend/middleware"
+	"gs-app/backend/internal/handler"
+	"gs-app/backend/internal/middleware"
+	"gs-app/backend/internal/store"
 	"log"
 	"net/http"
 	"os"
@@ -12,6 +13,8 @@ import (
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
 )
+
+var defaultPackSizes = []int{250, 500, 1000, 2000, 5000}
 
 func main() {
 	godotenv.Load()
@@ -37,9 +40,16 @@ func main() {
 	}))
 	router.Use(middleware.LoggerMiddleware(logger))
 
+	packStore := store.NewPacksStore(defaultPackSizes, logger)
+
+	apiCfg := &handler.APIConfig{
+		PackStore: packStore,
+	}
+
 	v1Router := chi.NewRouter()
 
-	v1Router.Get("/health", handler.CheckHealthHandler)
+	v1Router.Get("/health", apiCfg.CheckHealthHandler)
+	v1Router.Post("/calculate", apiCfg.CalculateHandler)
 
 	router.Mount("/v1", v1Router)
 
